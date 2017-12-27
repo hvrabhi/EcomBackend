@@ -39,9 +39,9 @@ public class UserDAOimpl implements UserDAO {
 		
 	
 		Session session=sessionFactory.openSession();
-		Transaction tx=session.beginTransaction();
+		Transaction tr=session.beginTransaction();
 		List<Users>list=(List<Users>)session.createQuery("from Users");
-		tx.commit();
+		tr.commit();
 		return list;
 	
 	

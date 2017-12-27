@@ -11,7 +11,6 @@ public class Supplier {
 
 	@Id
 	@GeneratedValue
-	@Column(name="supplier_id")
 	private int id;
 	private String suppliername,supplieraddress;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
