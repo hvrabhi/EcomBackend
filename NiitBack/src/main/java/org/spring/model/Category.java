@@ -21,10 +21,10 @@ public class Category {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private int cid;
 	private String cname;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade =CascadeType.ALL)
-	 private Set<Product> products = new HashSet<Product>();
+	@OneToMany(targetEntity=Product.class, fetch = FetchType.EAGER, mappedBy = "category", cascade =CascadeType.ALL)
+	 private Set<Product> products = new HashSet<Product>(0);
 	
 	public Set<Product> getProducts() {
 		return products;
@@ -33,10 +33,10 @@ public class Category {
 		this.products = products;
 	}
 	public int getId() {
-		return id;
+		return cid;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.cid = cid;
 	}
 	public String getCname() {
 		return cname;

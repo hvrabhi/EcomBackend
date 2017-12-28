@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CategoryDAOimpl implements CategoryDAO {
+	
 	public CategoryDAOimpl(){}
 	
 	@Autowired

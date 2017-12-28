@@ -11,10 +11,10 @@ public class Supplier {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private int sid;
 	private String suppliername,supplieraddress;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
-	 private Set<Product> products = new HashSet<Product>();
+	@OneToMany(targetEntity=Product.class, fetch = FetchType.EAGER, mappedBy = "supplier", cascade = CascadeType.ALL)
+	 private Set<Product> products = new HashSet<Product>(0);
 	public Set<Product> getProducts() {
 		return products;
 	}
@@ -28,10 +28,10 @@ public class Supplier {
 		this.supplieraddress = supplieraddress;
 	}
 	public int getId() {
-		return id;
+		return sid;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.sid = sid;
 	}
 	public String getSuppliername() {
 		return suppliername;

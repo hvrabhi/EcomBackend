@@ -6,9 +6,11 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.spring.DAO.CategoryDAO;
+import org.spring.DAO.ProductDAO;
 import org.spring.DAO.SupplierDAO;
 import org.spring.DAO.UserDAO;
 import org.spring.DAOimpl.CategoryDAOimpl;
+import org.spring.DAOimpl.ProductDAOimpl;
 import org.spring.DAOimpl.SupplierDAOimpl;
 import org.spring.DAOimpl.UserDAOimpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,7 @@ public class Databaseconfiguration {
 		properties.put("hibernate.show_sql","true");
 		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		properties.put("hibernate.hbm2ddl.auto", "update");
+		//properties.put("hibernate.hbm2ddl.auto", "create");
 		System.out.println("Hibernate Properties");
 		return properties;
 		
@@ -86,6 +89,14 @@ public class Databaseconfiguration {
 	public CategoryDAO getCategory(SessionFactory sessionFactory)
 	{
 		return new CategoryDAOimpl(sessionFactory);
+		
+	}
+	
+	@Autowired
+	@Bean(name="productDAO")
+	public ProductDAO getProduct(SessionFactory sessionFactory)
+	{
+		return new ProductDAOimpl(sessionFactory);
 		
 	}
 	

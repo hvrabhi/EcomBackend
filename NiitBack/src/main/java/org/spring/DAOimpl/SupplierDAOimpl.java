@@ -8,7 +8,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.spring.DAO.SupplierDAO;
-import org.spring.model.Category;
 import org.spring.model.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SupplierDAOimpl implements SupplierDAO {
 	
-	
 	public SupplierDAOimpl(){}
+	
 	
 	@Autowired
     private SessionFactory sessionFactory;

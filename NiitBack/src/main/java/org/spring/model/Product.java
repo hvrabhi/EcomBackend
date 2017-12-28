@@ -21,27 +21,15 @@ public class Product {
 	private double price;
 	private int quantity ;
 	private boolean instock;
-	private int category_id;
-	
-	private int supplier_id;
-	
+	private int cid;
+	private int sid;
 	private String image;
-	
-
-
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
+	@JoinColumn(name = "cid" , updatable = false, insertable = false, nullable = false)
 	private Category category;
-	 
-	 
+	 	 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "supplier_id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "sid" , updatable = false, insertable = false, nullable = false)
 	private Supplier supplier;
 
 
@@ -82,17 +70,24 @@ public class Product {
 	public void setInstock(boolean instock) {
 		this.instock = instock;
 	}
-	public int getCategory_id() {
-		return category_id;
+	public String getImage() {
+		return image;
 	}
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setImage(String image) {
+		this.image = image;
 	}
-	public int getSupplier_id() {
-		return supplier_id;
+	
+	public int getCid() {
+		return cid;
 	}
-	public void setSupplier_id(int supplier_id) {
-		this.supplier_id = supplier_id;
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+	public int getSid() {
+		return sid;
+	}
+	public void setSid(int sid) {
+		this.sid = sid;
 	}
 	public Category getCategory() {
 		return category;
