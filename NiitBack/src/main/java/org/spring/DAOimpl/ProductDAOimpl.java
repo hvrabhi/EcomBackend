@@ -52,4 +52,28 @@ public class ProductDAOimpl implements ProductDAO {
          session.close();
          return listProduct;
      }
+	 @Transactional
+		public Product getProductById(int id) {
+			String hql = "from" + " Product" + " where id=" + id;
+			@SuppressWarnings("rawtypes")
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
+			@SuppressWarnings("unchecked")
+			List<Product> listProduct = (List<Product>) query.list();
+
+			if (listProduct != null && !listProduct.isEmpty()) {
+				return listProduct.get(0);
+			}
+
+			return null;
+		}
+
+		@Transactional
+		public Product removeProducyById(int id) {
+			Product ProductToDelete = new Product();
+			ProductToDelete.setId(id);
+			sessionFactory.getCurrentSession().delete(ProductToDelete);
+			return ProductToDelete;
+		}
+
 }

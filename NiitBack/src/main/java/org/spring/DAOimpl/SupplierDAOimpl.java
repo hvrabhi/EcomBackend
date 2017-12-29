@@ -55,4 +55,28 @@ public class SupplierDAOimpl implements SupplierDAO {
 	         session.close();
 	         return listSupplier;
 	     }
+	  	@Transactional
+		public Supplier getSupplierById(int sid) {
+			String hql = "from"+" Supplier"+" where id=" + sid;
+			@SuppressWarnings("rawtypes")
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			
+			@SuppressWarnings("unchecked")
+			List<Supplier> listSupplier = (List<Supplier>) query.list();
+			
+			if (listSupplier != null && !listSupplier.isEmpty()) {
+				return listSupplier.get(0);
+			}
+			
+			return null;
+		}
+
+		@Transactional
+		public Supplier removeSupplierById(int sid) {
+			Supplier SupplierToDelete = new Supplier();
+			SupplierToDelete.setId(sid);
+			sessionFactory.getCurrentSession().delete(SupplierToDelete);
+			return SupplierToDelete;
+		}
+		
 }

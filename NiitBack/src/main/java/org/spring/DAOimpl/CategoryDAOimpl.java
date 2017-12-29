@@ -57,4 +57,32 @@ public class CategoryDAOimpl implements CategoryDAO {
 	         session.close();
 	         return listCategory;
 	     }
+
+	  	@Transactional
+		public Category getCategoryById(int cid) {
+			String hql = "from"+" Category"+" where id=" + cid;
+			@SuppressWarnings("rawtypes")
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			
+			@SuppressWarnings("unchecked")
+			List<Category> listCategory = (List<Category>) query.list();
+			
+			if (listCategory != null && !listCategory.isEmpty()) {
+				return listCategory.get(0);
+			}
+			
+			return null;
+		}
+
+
+
+		@Transactional
+		public Category removeCategoryById(int cid) {
+			Category CategoryToDelete = new Category();
+			CategoryToDelete.setId(cid);
+			sessionFactory.getCurrentSession().delete(CategoryToDelete);
+			return CategoryToDelete;
+		}
+
+
 }
