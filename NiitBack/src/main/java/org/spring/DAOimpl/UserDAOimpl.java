@@ -35,16 +35,8 @@ public class UserDAOimpl implements UserDAO {
 		}
 		return false;
 	}
-	public List<Users> getAllUsers() {
-		
-	
-		Session session=sessionFactory.openSession();
-		Transaction tr=session.beginTransaction();
-		List<Users>list=(List<Users>)session.createQuery("from Users");
-		tr.commit();
-		return list;
 	
 	
-	}
+	
 	
 }

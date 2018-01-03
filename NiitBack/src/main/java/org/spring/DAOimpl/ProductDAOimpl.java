@@ -69,7 +69,7 @@ public class ProductDAOimpl implements ProductDAO {
 		}
 
 		@Transactional
-		public Product removeProducyById(int id) {
+		public Product removeProductyById(int id) {
 			Product ProductToDelete = new Product();
 			ProductToDelete.setId(id);
 			sessionFactory.getCurrentSession().delete(ProductToDelete);

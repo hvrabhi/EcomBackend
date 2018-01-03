@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 @Entity
@@ -23,7 +25,10 @@ public class Product {
 	private boolean instock;
 	private int cid;
 	private int sid;
-	private String image;
+	
+	@Transient
+	private MultipartFile image;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cid" , updatable = false, insertable = false, nullable = false)
 	private Category category;
@@ -70,13 +75,14 @@ public class Product {
 	public void setInstock(boolean instock) {
 		this.instock = instock;
 	}
-	public String getImage() {
+	
+	
+	public MultipartFile getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
-	
 	public int getCid() {
 		return cid;
 	}
