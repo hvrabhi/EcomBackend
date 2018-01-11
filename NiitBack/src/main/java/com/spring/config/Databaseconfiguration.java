@@ -1,29 +1,22 @@
-package org.spring.config;
+package com.spring.config;
 
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
-import org.spring.DAO.CategoryDAO;
-import org.spring.DAO.ProductDAO;
-import org.spring.DAO.SupplierDAO;
-import org.spring.DAO.UserDAO;
-import org.spring.DAOimpl.CategoryDAOimpl;
-import org.spring.DAOimpl.ProductDAOimpl;
-import org.spring.DAOimpl.SupplierDAOimpl;
-import org.spring.DAOimpl.UserDAOimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.spring.dao.*;
 @Configuration
-@ComponentScan("org.spring")
+@ComponentScan("com.spring")
 @EnableTransactionManagement
 public class Databaseconfiguration {
 	
@@ -55,7 +48,7 @@ public class Databaseconfiguration {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
-		sessionBuilder.scanPackages("org.spring");
+		sessionBuilder.scanPackages("com.spring");
 		System.out.println("Session");
 		
 		return sessionBuilder.buildSessionFactory();
@@ -73,14 +66,14 @@ public class Databaseconfiguration {
 	@Autowired
 	@Bean(name = "userDAO")
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {
-	    return new UserDAOimpl(sessionFactory);
+	    return new UserDAOImpl(sessionFactory);
 	}
 	
 	@Autowired
 	@Bean(name="supplierDAO")
 	public SupplierDAO getSupplier(SessionFactory sessionFactory)
 	{
-		return new SupplierDAOimpl(sessionFactory);
+		return new SupplierDAOImpl(sessionFactory);
 		
 	}
 	
@@ -88,7 +81,7 @@ public class Databaseconfiguration {
 	@Bean(name="categoryDAO")
 	public CategoryDAO getCategory(SessionFactory sessionFactory)
 	{
-		return new CategoryDAOimpl(sessionFactory);
+		return new CategoryDAOImpl(sessionFactory);
 		
 	}
 	
@@ -96,10 +89,37 @@ public class Databaseconfiguration {
 	@Bean(name="productDAO")
 	public ProductDAO getProduct(SessionFactory sessionFactory)
 	{
-		return new ProductDAOimpl(sessionFactory);
+		return new ProductDAOImpl(sessionFactory);
 		
 	}
-	
+	@Autowired
+	@Bean(name="cartDAO")
+	public CartDAO getCart(SessionFactory sessionFactory)
+	{
+		return new CartDAOImpl(sessionFactory);
+		
+	}
+	@Autowired
+	@Bean(name = "addressDAO")
+	public AddressDAO getAddressDAO(SessionFactory sessionFactory)
+	{
+
+		return new AddressDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "ordersDAO")
+	public OrdersDAO getOrdersDAO(SessionFactory sessionFactory)
+	{
+
+		return new OrdersDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "paymentDAO")
+	public PaymentDAO getPaymentDAO(SessionFactory sessionFactory)
+	{
+
+		return new PaymentDAOImpl(sessionFactory);
+	}
 }
 	
 	
